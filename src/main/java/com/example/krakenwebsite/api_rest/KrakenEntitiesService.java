@@ -43,10 +43,10 @@ public class KrakenEntitiesService {
             List<Integer> coauthors = publicationsRepository.getAuthorsIdOfPublication(Integer.parseInt(pub.getId().toString()));
             List<Integer> area = publicationsRepository.getAreaIdOfPublication(Integer.parseInt(pub.getId().toString()));
             for(Integer authorId: coauthors){
-                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), pub.getId().toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", pub.getId().toString(), authorId.toString()));
             }
             for(Integer areaId: area){
-                connections.add(String.format("{from: %s,to: %s}", pub.getId().toString(), areaId.toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", areaId.toString(), pub.getId().toString()));
             }
             //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
         }
@@ -68,10 +68,11 @@ public class KrakenEntitiesService {
             List<Integer> authors = projectsRepository.getContributorsIdOfProject(Integer.parseInt(project.getId().toString()));
             List<Integer> area = projectsRepository.getAreaIdOfProject(Integer.parseInt(project.getId().toString()));
             for(Integer authorId: authors){
-                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), project.getId().toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", project.getId().toString(),
+                        authorId.toString()));
             }
             for(Integer areaId: area){
-                connections.add(String.format("{from: %s,to: %s}", project.getId().toString(), areaId.toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", areaId.toString(), project.getId().toString()));
             }
             //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
         }
@@ -88,10 +89,10 @@ public class KrakenEntitiesService {
             List<Integer> authors = coursesRepository.getTeachersIdOfCourse(Integer.parseInt(course.getId().toString()));
             List<Integer> area = coursesRepository.getAreaIdOfCourse(Integer.parseInt(course.getId().toString()));
             for(Integer authorId: authors){
-                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), course.getId().toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", course.getId().toString(), authorId.toString()));
             }
             for(Integer areaId: area){
-                connections.add(String.format("{from: %s,to: %s}", course.getId().toString(), areaId.toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", areaId.toString(), course.getId().toString()));
             }
             //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
         }
@@ -108,10 +109,10 @@ public class KrakenEntitiesService {
             List<Integer> authors = eventsRepository.getParticipantsIdOfEvent(Integer.parseInt(event.getId().toString()));
             List<Integer> area = eventsRepository.getAreaIdOfEvent(Integer.parseInt(event.getId().toString()));
             for(Integer authorId: authors){
-                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), event.getId().toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", event.getId().toString(), authorId.toString()));
             }
             for(Integer areaId: area){
-                connections.add(String.format("{from: %s,to: %s}", event.getId().toString(), areaId.toString()));
+                connections.add(String.format("{\"from\": %s,\"to\": %s}", areaId.toString(), event.getId().toString()));
             }
             //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
         }

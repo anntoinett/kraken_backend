@@ -14,11 +14,11 @@ public class TeamMemberEntity {
     @Property("name")
     private final String name;
     @Property("academic_title")
-    private final String academicTitle;
+    private final String academic_title;
     @Property("description")
     private final String description;
     @Property("photo_file")
-    private final String photoFile;
+    private final String photo_file;
     /*@Relationship(type = "IS_A_MEMBER_OF", direction = OUTGOING)
     private Set<KrakenGroupEntity> krakenGroup= new HashSet<>();*/
 
