@@ -15,6 +15,12 @@ public class KrakenEntitiesService {
     @Autowired
     private PublicationEntitiesRepository publicationsRepository;
     @Autowired
+    private ProjectEntitiesRepository projectsRepository;
+    @Autowired
+    private CourseEntitiesRepository coursesRepository;
+    @Autowired
+    private EventEntitiesRepository eventsRepository;
+    @Autowired
     private AreaEntitiesRepository areaEntitiesRepository;
 
     public List getAllMembers() {
@@ -30,7 +36,7 @@ public class KrakenEntitiesService {
     public PublicationsWithNeighbours getAllPublicationsWithData(){
         List<PublicationEntity> pubs = publicationsRepository.getAllPublications();
         List<AreaEntity> areas = areaEntitiesRepository.getAllAreasOfPublications();
-        List<TeamMemberEntity> authors = membersRepository.getAllAuthorsOfPublications();
+        List<TeamMemberEntity> authors = membersRepository.getAllPublicationsAuthors();
         List<String> connections = new ArrayList();
 
         for (PublicationEntity pub: pubs) {
@@ -51,6 +57,66 @@ public class KrakenEntitiesService {
         return membersRepository.findAll();
     }
     public Long getCountOfMembers() {return membersRepository.count();}
+
+    public ProjectsWithNeighbours getAllProjectsWithData() {
+        List<ProjectEntity> projects = projectsRepository.getAllProjects();
+        List<AreaEntity> areas = areaEntitiesRepository.getAllAreasOfProjects();
+        List<TeamMemberEntity> contributors = membersRepository.getAllProjectsContributors();
+        List<String> connections = new ArrayList();
+
+        for (ProjectEntity project: projects) {
+            List<Integer> authors = projectsRepository.getContributorsIdOfProject(Integer.parseInt(project.getId().toString()));
+            List<Integer> area = projectsRepository.getAreaIdOfProject(Integer.parseInt(project.getId().toString()));
+            for(Integer authorId: authors){
+                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), project.getId().toString()));
+            }
+            for(Integer areaId: area){
+                connections.add(String.format("{from: %s,to: %s}", project.getId().toString(), areaId.toString()));
+            }
+            //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
+        }
+        return new ProjectsWithNeighbours(projects, contributors, areas, connections);
+    }
+
+    public CoursesWithNeighbours getAllCoursesWithData() {
+        List<CourseEntity> courses = coursesRepository.getAllCourses();
+        List<AreaEntity> areas = areaEntitiesRepository.getAllAreasOfCourses();
+        List<TeamMemberEntity> teachers = membersRepository.getAllCoursesTeachers();
+        List<String> connections = new ArrayList();
+
+        for (CourseEntity course: courses) {
+            List<Integer> authors = coursesRepository.getTeachersIdOfCourse(Integer.parseInt(course.getId().toString()));
+            List<Integer> area = coursesRepository.getAreaIdOfCourse(Integer.parseInt(course.getId().toString()));
+            for(Integer authorId: authors){
+                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), course.getId().toString()));
+            }
+            for(Integer areaId: area){
+                connections.add(String.format("{from: %s,to: %s}", course.getId().toString(), areaId.toString()));
+            }
+            //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
+        }
+        return new CoursesWithNeighbours(courses, teachers, areas, connections);
+    }
+
+    public EventsWithNeighbours getAllEventsWithData() {
+        List<EventEntity> events = eventsRepository.getAllEvents();
+        List<AreaEntity> areas = areaEntitiesRepository.getAllAreasOfEvents();
+        List<TeamMemberEntity> participants = membersRepository.getAllEventsParticipants();
+        List<String> connections = new ArrayList();
+
+        for (EventEntity event: events) {
+            List<Integer> authors = eventsRepository.getParticipantsIdOfEvent(Integer.parseInt(event.getId().toString()));
+            List<Integer> area = eventsRepository.getAreaIdOfEvent(Integer.parseInt(event.getId().toString()));
+            for(Integer authorId: authors){
+                connections.add(String.format("{from: %s,to: %s}", authorId.toString(), event.getId().toString()));
+            }
+            for(Integer areaId: area){
+                connections.add(String.format("{from: %s,to: %s}", event.getId().toString(), areaId.toString()));
+            }
+            //result.add(new PublicationWithNeighbours(pub,coauthors,areaOfResearch));
+        }
+        return new EventsWithNeighbours(events, participants, areas, connections);
+    }
 
 
 /*    public TeamMemberEntity saveTeamMemberEntity(TeamMemberEntity teamMemberEntity) {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/kraken")
+@RequestMapping("/krakenApi")
 public class KrakenEntitiesController {
 
     @Autowired
@@ -27,6 +27,23 @@ public class KrakenEntitiesController {
         return krakenEntitiesService.getAllPublicationsWithData();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/projects")
+    public ProjectsWithNeighbours getAllProjects() {
+        return krakenEntitiesService.getAllProjectsWithData();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/courses")
+    public CoursesWithNeighbours getAllCourses() {
+        return krakenEntitiesService.getAllCoursesWithData();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/events")
+    public EventsWithNeighbours getAllEvents() {
+        return krakenEntitiesService.getAllEventsWithData();
+    }
 //    @GetMapping("/findAll")
 //    public Collection findAllMembers() {
 //        return krakenEntitiesService.findAll();

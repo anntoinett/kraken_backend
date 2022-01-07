@@ -1,7 +1,7 @@
 package com.example.krakenwebsite.api_rest;
 
 import com.example.krakenwebsite.neo4j_mapping.AreaEntity;
-import com.example.krakenwebsite.neo4j_mapping.ProjectEntity;
+import com.example.krakenwebsite.neo4j_mapping.CourseEntity;
 import com.example.krakenwebsite.neo4j_mapping.PublicationEntity;
 import com.example.krakenwebsite.neo4j_mapping.TeamMemberEntity;
 import lombok.AllArgsConstructor;
@@ -15,32 +15,26 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PublicationsWithNeighbours {
-    List<PublicationEntity> publications;
-    List<TeamMemberEntity> coauthors;
+public class CoursesWithNeighbours {
+    List<CourseEntity> courses;
+    List<TeamMemberEntity> coteachers;
     List<AreaEntity> areas;
     List connections;
 }
-/*
-    List<PublicationEntity> pubs;
-    List<TeamMemberEntity> coauthors;
-    List<AreaEntity> areas;
-    List connections;
-
-    public List<PublicationEntity> getPubs() {
-        return pubs;
+ /*public List<CourseEntity> getCourses() {
+        return courses;
     }
 
-    public void setPubs(List<PublicationEntity> pubs) {
-        this.pubs = pubs;
+    public void setPubs(List<CourseEntity> pubs) {
+        this.courses = pubs;
     }
 
     public List<TeamMemberEntity> getCoauthors() {
-        return coauthors;
+        return coteachers;
     }
 
-    public void setCoauthors(List<TeamMemberEntity> coauthors) {
-        this.coauthors = coauthors;
+    public void setCoauthors(List<TeamMemberEntity> coteachers) {
+        this.coteachers = coteachers;
     }
 
     public List<AreaEntity> getAreas() {
@@ -59,10 +53,10 @@ public class PublicationsWithNeighbours {
         this.connections = connections;
     }
 
-    PublicationsWithNeighbours(List<PublicationEntity> pubs, List<TeamMemberEntity> coauthors, List<AreaEntity> areas, List connections){
-        this.pubs = pubs;
-        this.coauthors = coauthors;
+    CoursesWithNeighbours(List<CourseEntity> courses, List<TeamMemberEntity> coteachers, List<AreaEntity> areas, List connections){
+        this.courses = courses;
+        this.coteachers = coteachers;
         this.areas = areas;
         this.connections = connections;
     }
-    PublicationsWithNeighbours(){};*/
+    CoursesWithNeighbours(){};*/

@@ -18,8 +18,6 @@ public class AreaEntity {
     private final String name;
     @Property("description")
     private final String description;
-    @Property("label")
-    private final String label;
     /*@Relationship(type = "IS_A_MEMBER_OF", direction = OUTGOING)
     private Set<KrakenGroupEntity> krakenGroup= new HashSet<>();*/
 

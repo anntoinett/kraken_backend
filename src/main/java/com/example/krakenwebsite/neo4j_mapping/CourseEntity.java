@@ -7,22 +7,15 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
 
-@Node("Publication")
+@Node("Course")
 @AllArgsConstructor
 @Getter
-public class PublicationEntity {
+public class CourseEntity {
     @Id
     @GeneratedValue
     private final Long id;
     @Property("name")
     private final String name;
-    @Property("year")
-    private final String year;
     @Property("description")
-    private final String description;;
-    @Property("link")
-    private final String link;
-    /*@Relationship(type = "IS_A_MEMBER_OF", direction = OUTGOING)
-    private Set<KrakenGroupEntity> krakenGroup= new HashSet<>();*/
-
+    private final String description;
 }
